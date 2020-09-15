@@ -1,5 +1,8 @@
 from turtle import *
 from freegames import vector
+from math import sqrt
+
+t = Turtle()
 
 def line(start, end):
     "Draw line from start to end."
@@ -21,38 +24,14 @@ def square(start, end):
 
     end_fill()
 
-def circle(start, end):
+def circl(start, end):
     "Draw circle from start to end."
-    pass  # TODO
-
-def rectangle(start, end):
-    "Draw rectangle from start to end."
     up()
     goto(start.x, start.y)
+    r = sqrt((start.x - end.x)**2+(end.y - end.y)**2)
     down()
     begin_fill()
-
-    ancho = (end.x - start.x)/2
-
-    for count in range (2):
-        forward(end.x - start.x)
-        left(90)
-        forward(ancho)
-        left(90)
-
-    end_fill()
-
-def triangle(start, end):
-    "Draw triangle from start to end."
-    up()
-    goto(start.x, start.y)
-    down()
-    begin_fill()
-
-    for count in range(3):
-        forward(end.x - start.x)
-        left(120)
-
+    circle(r)
     end_fill()
 
 def tap(x, y):
@@ -81,9 +60,10 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+onkey(lambda: color('orange'), 'O')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
-onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', circl), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
 done()
